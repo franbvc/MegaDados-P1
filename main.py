@@ -32,6 +32,12 @@ products = [
     tags=["products"],
 )
 async def create_product(product: RequestProduct):
+    """
+    Create a new product
+
+    - **product**: Product to create
+    """
+
     product_id = len(products) + 1
     products.append(
         Product(
@@ -52,6 +58,10 @@ async def create_product(product: RequestProduct):
     tags=["products"],
 )
 async def get_products():
+    """
+    Get all products
+    """
+
     return products
 
 
@@ -65,6 +75,13 @@ async def get_products():
 async def update_product_quantity(
     product_id: int, product_quantity: RequestProductQuantity
 ):
+    """
+    Update product quantity
+
+    - **product_id**: ID of the product to update
+    - **product_quantity**: New quantity of the product
+    """
+
     for product in products:
         if product.id == product_id:
             product.quantity = product_quantity.quantity
@@ -87,6 +104,13 @@ async def update_product_details(
     product_id: int,
     product_details: RequestProductDetails,
 ):
+    """
+    Update product details
+
+    - **product_id**: ID of the product to update
+    - **product_details**: New details of the product
+    """
+
     for product in products:
         if product.id == product_id:
             product.details = product_details.details
@@ -106,6 +130,13 @@ async def update_product_details(
     tags=["products"],
 )
 async def update_product(product_id: int, product_request: RequestProduct):
+    """
+    Update product
+
+    - **product_id**: ID of the product to update
+    - **product_request**: New product
+    """
+
     for product in products:
         if product.id == product_id:
             product.name = product_request.name
@@ -128,6 +159,12 @@ async def update_product(product_id: int, product_request: RequestProduct):
     tags=["products"],
 )
 async def delete_product(product_id: int):
+    """
+    Delete product
+
+    - **product_id**: ID of the product to delete
+    """
+    
     for product in products:
         if product.id == product_id:
             products.remove(product)
