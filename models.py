@@ -23,16 +23,30 @@ class RequestProduct(BaseModel):
 
     name: str = Field(example="Product 1", description="Product name")
     price: float = Field(example=10.0, description="Product price")
-    quantity: int = Field(example=4, description="Product quantity")
     details: str = Field(example="Details 1", description="Product details")
 
 
-class RequestProductQuantity(BaseModel):
+class Transaction(BaseModel):
     """
-    Request product quantity model for PUT requests
+    Transaction model
     """
 
-    quantity: int = Field(example=4, description="Product quantity")
+    id: int = Field(example=1, description="Transaction ID")
+    product_id: int = Field(example=1, description="Product ID")
+    transaction_date: str = Field(
+        example="2020-01-01 13:12:11", description="Transaction date"
+    )
+    quantity: int = Field(example=4, description="Transaction quantity")
+    transation_type: str = Field(example="BUY", description="Transaction type")
+
+
+class RequestTransaction(BaseModel):
+    """
+    Request transaction model for POST requests
+    """
+
+    product_id: int = Field(example=1, description="Product ID")
+    quantity: int = Field(example=4, description="Transaction quantity")
 
 
 class RequestProductDetails(BaseModel):
@@ -43,9 +57,25 @@ class RequestProductDetails(BaseModel):
     details: str = Field(example="Details 1", description="Product details")
 
 
+class RequestProductPrice(BaseModel):
+    """
+    Request product price model for PUT requests
+    """
+
+    price: float = Field(example=10.0, description="Product price")
+
+
+class RequestProductName(BaseModel):
+    """
+    Request product name model for PUT requests
+    """
+
+    name: str = Field(example="Product 1", description="Product name")
+
+
 class ErrorMessage(BaseModel):
     """
     Error message model
     """
-    
+
     message: str = Field(example="Example message", description="Error message")
