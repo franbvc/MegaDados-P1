@@ -71,7 +71,7 @@ async def create_product(product: RequestProduct):
     "/transactions",
     response_model=Transaction,
     status_code=status.HTTP_201_CREATED,
-    responses={404: {"model": ErrorMessage}},
+    responses={404: {"model": ErrorMessage}, 400: {"model": ErrorMessage}},
     tags=["products"],
 )
 async def create_transaction(transaction: RequestTransaction):
@@ -316,7 +316,6 @@ async def update_product(product_id: int, product_request: RequestProduct):
 
 @app.delete(
     "/products/{product_id}",
-    response_model=Product,
     status_code=status.HTTP_200_OK,
     responses={404: {"model": ErrorMessage}},
     tags=["products"],
